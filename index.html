@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- DRAFT for Jon's review — not published -->
+  <title>Commercial Solar Performance Audits | WeatherAdjusted Solar</title>
+  <meta name="description" content="WeatherAdjusted Solar audits commercial solar for under-production after weather. See expected vs actual kWh, lost output, and causes to check. From $199.">
+  <style>
+    :root {
+      --bg: #f4f1ea;
+      --bg-alt: #ebe6dc;
+      --card: #fffdf8;
+      --ink: #1a2119;
+      --muted: #4d564b;
+      --line: #d4cec3;
+      --green: #1d5a38;
+      --green-dark: #143e27;
+      --green-soft: #e7f0ea;
+      --focus: #1d5a38;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 1.0625rem;
+      line-height: 1.6;
+    }
+    img { max-width: 100%; }
+    a { color: var(--green); }
+    a:hover { color: var(--green-dark); }
+    a:focus-visible,
+    .btn:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 3px;
+    }
+
+    .wrap {
+      width: min(720px, calc(100% - 2rem));
+      margin-inline: auto;
+    }
+    .wide { width: min(960px, calc(100% - 2rem)); margin-inline: auto; }
+
+    header.site {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(244, 241, 234, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.75rem 0;
+    }
+    .brand {
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 1.05rem;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.92rem;
+    }
+    .nav-links a:hover { color: var(--ink); }
+
+    .btn {
+      display: inline-block;
+      background: var(--green);
+      color: #fff !important;
+      text-decoration: none;
+      padding: 0.7rem 1.15rem;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 1rem;
+      line-height: 1.2;
+    }
+    .btn:hover { background: var(--green-dark); }
+    .btn-sm { padding: 0.45rem 0.85rem; font-size: 0.92rem; }
+    .btn-secondary {
+      background: transparent;
+      color: var(--green) !important;
+      box-shadow: inset 0 0 0 2px var(--green);
+    }
+    .btn-secondary:hover { background: var(--green-soft); }
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1rem;
+      align-items: center;
+    }
+
+    h1, h2, h3 {
+      font-family: Georgia, "Times New Roman", Times, serif;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      font-weight: 700;
+      margin: 0 0 0.75rem;
+    }
+    h1 { font-size: clamp(2rem, 5vw, 3rem); }
+    h2 { font-size: clamp(1.5rem, 3vw, 2rem); }
+    h3 { font-size: 1.15rem; font-family: inherit; letter-spacing: 0; }
+    p { margin: 0 0 1rem; }
+    p:last-child { margin-bottom: 0; }
+
+    .hero {
+      padding: 3.25rem 0 3.5rem;
+    }
+    .hero p.lede {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 40rem;
+    }
+
+    section { padding: 2.5rem 0; }
+    section.alt { background: var(--bg-alt); }
+    section.band { background: var(--green); color: #f6faf7; }
+    section.band h2, section.band a { color: #fff; }
+    section.band .muted, section.band p { color: #e2ece6; }
+    section.band a.btn {
+      background: #fff;
+      color: var(--green-dark) !important;
+    }
+    section.band a.btn:hover { background: #f4f1ea; }
+    section.band a.btn-secondary {
+      background: transparent;
+      color: #fff !important;
+      box-shadow: inset 0 0 0 2px #fff;
+    }
+    section.band a.btn-secondary:hover { background: rgba(255,255,255,0.12); }
+
+    ol.steps {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.5rem;
+      counter-reset: step;
+    }
+    ol.steps li {
+      counter-increment: step;
+      margin-bottom: 1.35rem;
+      padding-left: 3rem;
+      position: relative;
+    }
+    ol.steps li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 0.05rem;
+      width: 2.1rem;
+      height: 2.1rem;
+      border-radius: 50%;
+      background: var(--green-soft);
+      color: var(--green-dark);
+      font-weight: 700;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    ol.steps h3 { margin-bottom: 0.35rem; }
+
+    ul.plain {
+      margin: 0 0 1.25rem;
+      padding-left: 1.2rem;
+    }
+    ul.plain li { margin-bottom: 0.4rem; }
+
+    .price-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--card);
+      margin: 1rem 0 1.5rem;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .price-table th,
+    .price-table td {
+      text-align: left;
+      padding: 0.8rem 1rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .price-table th {
+      background: var(--green-soft);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--green-dark);
+    }
+    .price-table tr:last-child td { border-bottom: 0; }
+    .price-table td:last-child,
+    .price-table th:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+    .price-table a { font-weight: 600; }
+
+    .callout {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 1.15rem 1.25rem;
+      margin: 0 0 1rem;
+    }
+    .proof {
+      font-family: Georgia, "Times New Roman", Times, serif;
+      font-size: clamp(1.25rem, 2.6vw, 1.65rem);
+      line-height: 1.35;
+      margin: 0;
+    }
+
+    details {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 0.85rem 1rem;
+      margin-bottom: 0.6rem;
+    }
+    details summary {
+      cursor: pointer;
+      font-weight: 650;
+      list-style: none;
+    }
+    details summary::-webkit-details-marker { display: none; }
+    details summary::after {
+      content: "+";
+      float: right;
+      color: var(--muted);
+      font-weight: 400;
+    }
+    details[open] summary::after { content: "–"; }
+    details p { margin: 0.7rem 0 0.15rem; color: var(--muted); }
+
+    footer.site {
+      border-top: 1px solid var(--line);
+      padding: 1.5rem 0 2rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    footer.site a { color: var(--muted); }
+
+
+    .hero-anim {
+      margin: 1.75rem 0 0;
+      padding: 0.9rem 0.9rem 0.65rem;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+    .hero-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem 1.15rem;
+      list-style: none;
+      margin: 0 0 0.45rem;
+      padding: 0;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+    .hero-legend li {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .hero-legend i {
+      display: block;
+      width: 1.15rem;
+      height: 0;
+      border-top: 2.5px solid;
+      border-radius: 1px;
+    }
+    .hero-legend .swatch-expected { color: var(--green); }
+    .hero-legend .swatch-actual { color: #9a4b2e; }
+    .hero-chart-wrap {
+      position: relative;
+    }
+    .hero-anim svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .hero-anim .hero-grid {
+      fill: none;
+      stroke: var(--line);
+      stroke-width: 1;
+    }
+    .hero-anim .line-expected,
+    .hero-anim .line-actual {
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 2.5;
+      stroke-dasharray: 600;
+      stroke-dashoffset: 600;
+    }
+    .hero-anim .line-expected {
+      stroke: var(--green);
+      animation: hero-draw 0.9s ease-out forwards;
+    }
+    .hero-anim .line-actual {
+      stroke: #9a4b2e;
+      animation:
+        hero-draw 0.9s ease-out forwards,
+        hero-drift 0.8s ease-in-out 0.9s both;
+    }
+    .hero-anim .gap-fill {
+      fill: rgba(154, 75, 46, 0.2);
+      opacity: 0;
+      animation: hero-fade 0.7s ease-out 1.5s forwards;
+    }
+    .hero-lost {
+      position: absolute;
+      left: 51.25%;
+      top: 26.25%;
+      transform: translate(-50%, -50%);
+      margin: 0;
+      padding: 0.15rem 0.45rem;
+      background: var(--card);
+      border: 1px solid #9a4b2e;
+      border-radius: 4px;
+      color: #9a4b2e;
+      font-size: 0.72rem;
+      font-weight: 650;
+      line-height: 1.2;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      animation: hero-fade 0.65s ease-out 1.75s forwards;
+    }
+    .hero-months {
+      position: relative;
+      height: 1.15rem;
+      margin: 0.15rem 0 0;
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.02em;
+    }
+    .hero-months span {
+      position: absolute;
+      top: 0;
+      transform: translateX(-50%);
+    }
+    .hero-anim figcaption {
+      margin: 0.45rem 0 0;
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    @keyframes hero-draw {
+      to { stroke-dashoffset: 0; }
+    }
+    @keyframes hero-drift {
+      from { d: path("M 64.00,120.00 C 72.00,117.50 96.00,111.50 112.00,105.00 C 128.00,98.50 144.00,88.50 160.00,81.00 C 176.00,73.50 192.00,66.75 208.00,60.00 C 224.00,53.25 240.00,46.00 256.00,40.50 C 272.00,35.00 288.00,28.75 304.00,27.00 C 320.00,25.25 336.00,27.00 352.00,30.00 C 368.00,33.00 384.00,39.00 400.00,45.00 C 416.00,51.00 432.00,58.50 448.00,66.00 C 464.00,73.50 480.00,82.50 496.00,90.00 C 512.00,97.50 528.00,105.50 544.00,111.00 C 560.00,116.50 584.00,121.00 592.00,123.00"); }
+      to { d: path("M 64.00,128.00 C 72.00,125.67 96.00,119.33 112.00,114.00 C 128.00,108.67 144.00,101.00 160.00,96.00 C 176.00,91.00 192.00,88.00 208.00,84.00 C 224.00,80.00 240.00,75.33 256.00,72.00 C 272.00,68.67 288.00,64.67 304.00,64.00 C 320.00,63.33 336.00,65.00 352.00,68.00 C 368.00,71.00 384.00,77.33 400.00,82.00 C 416.00,86.67 432.00,91.33 448.00,96.00 C 464.00,100.67 480.00,105.00 496.00,110.00 C 512.00,115.00 528.00,121.67 544.00,126.00 C 560.00,130.33 584.00,134.33 592.00,136.00"); }
+    }
+    @keyframes hero-fade {
+      to { opacity: 1; }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links a:not(.btn) { display: none; }
+      .hero { padding: 2.25rem 0 2.5rem; }
+      section { padding: 2rem 0; }
+      .price-table th, .price-table td { padding: 0.7rem 0.75rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-anim .line-expected,
+      .hero-anim .line-actual,
+      .hero-anim .gap-fill,
+      .hero-anim .hero-lost {
+        animation: none;
+        stroke-dashoffset: 0;
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site">
+    <div class="wide nav">
+      <a class="brand" href="#top">WeatherAdjusted Solar</a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#how-it-works">How it works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#sample">Sample report</a>
+        <a href="#faq">FAQ</a>
+        <a class="btn btn-sm" href="mailto:weatheradjustedsolar@gmail.com?subject=Request%20an%20audit">Request an audit</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap">
+        <h1>Is it the weather, or is the system down?</h1>
+        <p class="lede">WeatherAdjusted Solar is a remote, weather-adjusted audit for commercial solar. We compare what your site actually produced with what it should have produced in the weather you actually had — so a cloudy month doesn’t get confused with a system problem.</p>
+        <div class="cta-row">
+          <a class="btn" href="mailto:weatheradjustedsolar@gmail.com?subject=Request%20an%20audit">Request an audit</a>
+          <a class="btn btn-secondary" href="sample-report.pdf">See a sample report</a>
+        </div>
+        <figure class="hero-anim">
+          <ul class="hero-legend">
+            <li><i class="swatch-expected" aria-hidden="true"></i> Expected (weather-adjusted)</li>
+            <li><i class="swatch-actual" aria-hidden="true"></i> Actual</li>
+          </ul>
+          <div class="hero-chart-wrap">
+            <svg role="img" viewBox="0 0 640 180" xmlns="http://www.w3.org/2000/svg" aria-label="Illustration, not real data: an expected weather-adjusted output line and an actual output line, with the gap between them labeled Lost output.">
+              <title>Illustration of expected versus actual solar output, not real data</title>
+              <g class="hero-grid">
+                <path d="M 48,18 H 608"/>
+                <path d="M 48,68 H 608"/>
+                <path d="M 48,118 H 608"/>
+                <path d="M 48,168 H 608"/>
+              </g>
+              <path class="gap-fill" d="M 64.00,120.00 C 72.00,117.50 96.00,111.50 112.00,105.00 C 128.00,98.50 144.00,88.50 160.00,81.00 C 176.00,73.50 192.00,66.75 208.00,60.00 C 224.00,53.25 240.00,46.00 256.00,40.50 C 272.00,35.00 288.00,28.75 304.00,27.00 C 320.00,25.25 336.00,27.00 352.00,30.00 C 368.00,33.00 384.00,39.00 400.00,45.00 C 416.00,51.00 432.00,58.50 448.00,66.00 C 464.00,73.50 480.00,82.50 496.00,90.00 C 512.00,97.50 528.00,105.50 544.00,111.00 C 560.00,116.50 584.00,121.00 592.00,123.00 L 592.00,136.00 C 584.00,134.33 560.00,130.33 544.00,126.00 C 528.00,121.67 512.00,115.00 496.00,110.00 C 480.00,105.00 464.00,100.67 448.00,96.00 C 432.00,91.33 416.00,86.67 400.00,82.00 C 384.00,77.33 368.00,71.00 352.00,68.00 C 336.00,65.00 320.00,63.33 304.00,64.00 C 288.00,64.67 272.00,68.67 256.00,72.00 C 240.00,75.33 224.00,80.00 208.00,84.00 C 192.00,88.00 176.00,91.00 160.00,96.00 C 144.00,101.00 128.00,108.67 112.00,114.00 C 96.00,119.33 72.00,125.67 64.00,128.00 Z"/>
+              <path class="line-actual" d="M 64.00,128.00 C 72.00,125.67 96.00,119.33 112.00,114.00 C 128.00,108.67 144.00,101.00 160.00,96.00 C 176.00,91.00 192.00,88.00 208.00,84.00 C 224.00,80.00 240.00,75.33 256.00,72.00 C 272.00,68.67 288.00,64.67 304.00,64.00 C 320.00,63.33 336.00,65.00 352.00,68.00 C 368.00,71.00 384.00,77.33 400.00,82.00 C 416.00,86.67 432.00,91.33 448.00,96.00 C 464.00,100.67 480.00,105.00 496.00,110.00 C 512.00,115.00 528.00,121.67 544.00,126.00 C 560.00,130.33 584.00,134.33 592.00,136.00"/>
+              <path class="line-expected" d="M 64.00,120.00 C 72.00,117.50 96.00,111.50 112.00,105.00 C 128.00,98.50 144.00,88.50 160.00,81.00 C 176.00,73.50 192.00,66.75 208.00,60.00 C 224.00,53.25 240.00,46.00 256.00,40.50 C 272.00,35.00 288.00,28.75 304.00,27.00 C 320.00,25.25 336.00,27.00 352.00,30.00 C 368.00,33.00 384.00,39.00 400.00,45.00 C 416.00,51.00 432.00,58.50 448.00,66.00 C 464.00,73.50 480.00,82.50 496.00,90.00 C 512.00,97.50 528.00,105.50 544.00,111.00 C 560.00,116.50 584.00,121.00 592.00,123.00"/>
+            </svg>
+            <p class="hero-lost" aria-hidden="true">Lost output</p>
+          </div>
+          <div class="hero-months" aria-hidden="true">
+              <span style="left:10.000%">J</span>
+              <span style="left:17.500%">F</span>
+              <span style="left:25.000%">M</span>
+              <span style="left:32.500%">A</span>
+              <span style="left:40.000%">M</span>
+              <span style="left:47.500%">J</span>
+              <span style="left:55.000%">J</span>
+              <span style="left:62.500%">A</span>
+              <span style="left:70.000%">S</span>
+              <span style="left:77.500%">O</span>
+              <span style="left:85.000%">N</span>
+              <span style="left:92.500%">D</span>
+          </div>
+          <figcaption>Illustration, not real data</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="alt" id="problem">
+      <div class="wrap">
+        <h2>Lost kWh is lost money.</h2>
+        <p>Commercial solar output drops for ordinary reasons: inverter faults, soiling, shading, and damaged equipment. It also drops when the weather is poor. Most monitoring portals show what you produced. They don’t clearly show what you should have produced in that weather.</p>
+        <p>If you only look at raw kWh, a bad month can look like a broken system — or a broken system can hide behind a stretch of clouds.</p>
+        <p>Industry context (not a WeatherAdjusted Solar result): Raptor Maps, reported by PV Tech (March 2025), found average system power loss rose from 1.84% of project capacity in 2020 to 5.77% in 2024, and estimated underperformance cost the global solar sector up to $10 billion in lost revenue in 2024. For C&amp;I sites under 5 MW, the same report noted a high rate of identified DC health issues per megawatt.</p>
+        <p>You don’t need a portfolio platform to answer a simpler question: <strong>did this site under-produce after adjusting for the weather — and if so, by how much?</strong></p>
+      </div>
+    </section>
+
+    <section id="how-it-works">
+      <div class="wrap">
+        <h2>How it works</h2>
+        <ol class="steps">
+          <li>
+            <h3>Send us the site.</h3>
+            <p>Send us a few basics: the site location, system size (DC kW), mounting type, panel tilt and direction, and at least 12 months of monthly kWh (24 is better). A simple month-and-kWh spreadsheet works, exported from SolarEdge, Enphase, AlsoEnergy or a similar portal, or copied from your meter or utility statements. Not sure of the tilt? Send the install drawings or a photo and we'll estimate it.</p>
+            <p>Optional but helpful: your price per kWh, any known outages or curtailment, and inverter-level data. We never need your portal login or password, only the export.</p>
+          </li>
+          <li>
+            <h3>We adjust for the weather.</h3>
+            <p>We estimate what the site should have produced given actual irradiance and weather at that location, then compare it with what it did produce. We model a typical year for your exact system with NREL's PVWatts, adjust each month for the real sunlight NASA's satellite data measured, allow for normal panel aging (about 0.5% a year, the median rate in NREL's review), and flag any month more than 10% short. Months with possible snow (checked against NASA snow data) are shown but kept out of the headline loss. Curtailment and grid outages are called out separately, so equipment only gets blamed when it's really the cause.</p>
+          </li>
+          <li>
+            <h3>You get a plain-English report.</h3>
+            <p>Expected vs. actual output, lost kWh, an estimate of dollars lost, and possible causes to check. The audit is remote — no site visit.</p>
+          </li>
+        </ol>
+        <a class="btn" href="mailto:weatheradjustedsolar@gmail.com?subject=Request%20an%20audit">Request an audit</a>
+      </div>
+    </section>
+
+    <section class="alt" id="what-you-get">
+      <div class="wrap">
+        <h2>What you get</h2>
+        <p>A written remote audit for one commercial site, including:</p>
+        <ul class="plain">
+          <li>Expected vs. actual production, month by month</li>
+          <li>Lost kWh after the weather adjustment</li>
+          <li>An estimate of dollars lost at your rate</li>
+          <li>A short list of possible causes to check (for example: inverter issues, soiling, shading, or other patterns in the data)</li>
+          <li>Caveats and data limits, stated clearly — so you can act on the findings, not guess</li>
+        </ul>
+        <p>This is an under-production audit, not an on-site inspection, drone flight, or O&amp;M contract. If the data points to a physical problem, you take that to your technician or O&amp;M provider.</p>
+      </div>
+    </section>
+
+    <section id="pricing">
+      <div class="wrap">
+        <h2>Pricing</h2>
+        <p>A weather-adjusted expected-vs-actual check for one commercial solar site. No site visit.</p>
+        <table class="price-table">
+          <thead>
+            <tr>
+              <th scope="col">Site size</th>
+              <th scope="col">Audit price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Under 250 kW</td>
+              <td>$199</td>
+            </tr>
+            <tr>
+              <td>250 kW to 1 MW</td>
+              <td>$499</td>
+            </tr>
+            <tr>
+              <td>1 to 5 MW</td>
+              <td>$999</td>
+            </tr>
+            <tr>
+              <td>Over 5 MW</td>
+              <td>Custom quote, <a href="mailto:weatheradjustedsolar@gmail.com?subject=Custom%20quote%20for%20a%20site%20over%205%20MW">email us</a></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="callout">
+          <p><strong>Founding customer offer:</strong> the first 3 customers get 50% off in exchange for a short testimonial. (Any testimonial shown on this page will note that the customer received a discount.)</p>
+        </div>
+        <p>No site visit. One site per audit.</p>
+        <p><strong>Guarantee:</strong> If your data turns out to be unusable for a weather-adjusted check, you get a full refund.</p>
+        <a class="btn" href="mailto:weatheradjustedsolar@gmail.com?subject=Request%20an%20audit">Request an audit</a>
+      </div>
+    </section>
+
+    <section class="alt" id="proof">
+      <div class="wrap">
+        <h2>What we found</h2>
+        <p class="proof">Most sites ran within a few percent of expected, and our check flagged one real outlier.</p>
+      </div>
+    </section>
+
+    <section id="sample">
+      <div class="wrap">
+        <h2>Sample report</h2>
+        <h3>A real audit on a public site: 5 MW, fixed-tilt, northern Indiana (24 months, 2024–2025).</h3>
+        <p>We ran our standard check on a utility-owned solar plant using its public monthly data from the U.S. Energy Information Administration (EIA-923). The result was no under-production found.</p>
+        <ul class="plain">
+          <li>In the 12 snow-free months, the site produced about 1.1% more than expected once actual weather was taken into account. None of those months were more than 10% short.</li>
+          <li>The 5 flagged months all fell in November–January, and each one had possible snow in NASA's satellite data. The report shows those months but keeps them out of the headline loss, because snow isn't equipment failure.</li>
+        </ul>
+        <p>That's the point: we tell you when the weather explains it, instead of inventing a problem. If your site <em>is</em> losing output, the same report shows which months and roughly how much it costs.</p>
+        <p><em>Estimates from a public model (NREL PVWatts) and satellite weather (NASA POWER), using a state-average electricity price. This is not an engineering inspection. Results vary by site and data quality.</em></p>
+        <div class="cta-row">
+          <a class="btn" href="sample-report.pdf">See the full sample report</a>
+          <a class="btn btn-secondary" href="mailto:weatheradjustedsolar@gmail.com?subject=Request%20an%20audit">Request an audit of your site</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="alt" id="faq">
+      <div class="wrap">
+        <h2>FAQ</h2>
+
+        <details>
+          <summary>Who is this for?</summary>
+          <p>Commercial solar owners, asset managers, and O&amp;M firms. The first offer is aimed at smaller commercial and C&amp;I sites — roofs and ground arrays on warehouses, farms, schools, and similar sites. US sites first.</p>
+        </details>
+        <details>
+          <summary>What do you need from me?</summary>
+          <p>Site location, system size, and at least 12 months of monthly production data (24 is better). A monitoring-app export is ideal. A clear utility bill or monthly kWh table can work if that’s what you have.</p>
+        </details>
+        <details>
+          <summary>Doesn't my SolarEdge, Enphase, or Tigo portal already tell me this?</summary>
+          <p>Your portal shows what the system produced and flags equipment alarms. It usually doesn't tell you what the system <em>should</em> have produced given the sunlight that actually fell on your site that month. We estimate that, flag any month more than 10% short, and keep snow, curtailment, and grid outages from being mistaken for equipment problems. We also estimate the lost kWh and what it cost you. And we're independent: we don't sell or install solar.</p>
+        </details>
+        <details>
+          <summary>Why not run a free PVWatts check myself?</summary>
+          <p>You can, and it's a good start. A plain PVWatts estimate assumes a typical year, so a cloudy month can look like a broken system. We adjust each month for the real sunlight NASA's satellite data measured, allow for normal panel aging, separate out possible-snow months, note curtailment and outages, estimate what the missing energy cost you in dollars (at your rate, if you share it), and give you a short list of possible causes to check, in a report you can hand to your O&amp;M provider.</p>
+        </details>
+        <details>
+          <summary>Do you come on site?</summary>
+          <p>No. The audit is remote and based on your production data plus weather and irradiance for the site. We don’t repair equipment or replace your O&amp;M provider.</p>
+        </details>
+        <details>
+          <summary>What if the site is performing as it should?</summary>
+          <p>You’ll still get the expected-vs-actual comparison. If the weather explains the output, the report should say so. Knowing that the weather, not your equipment, explains the shortfall is a real result too, so you pay for the analysis either way. If your data turns out to be unusable, you get a full refund.</p>
+        </details>
+        <details>
+          <summary>What counts as site size?</summary>
+          <p>DC kW (the array’s DC nameplate), not the inverter AC rating.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="band" id="contact">
+      <div class="wrap">
+        <h2>Find out if your site is under-producing.</h2>
+        <p>Tell us about the site. We’ll follow up by email with what we need to run the audit and how to send the production data. Send the site size, location, and a year of production data. You’ll get a weather-adjusted report: expected vs. actual, lost kWh, and possible causes to check.</p>
+        <p>Write to <a href="mailto:weatheradjustedsolar@gmail.com">weatheradjustedsolar@gmail.com</a>.</p>
+        <div class="cta-row">
+          <a class="btn" href="mailto:weatheradjustedsolar@gmail.com?subject=Request%20an%20audit">Request an audit</a>
+          <a class="btn btn-secondary" href="sample-report.pdf">See a sample report</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site">
+    <div class="wide">
+      <p>WeatherAdjusted Solar · <a href="mailto:weatheradjustedsolar@gmail.com">weatheradjustedsolar@gmail.com</a></p>
+    </div>
+  </footer>
+</body>
+</html>
